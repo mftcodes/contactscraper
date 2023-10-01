@@ -19,3 +19,6 @@
 
 # Go workspace file
 go.work
+
+# My own notes
+notes.txt
