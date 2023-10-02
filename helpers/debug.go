@@ -18,9 +18,9 @@ func SetupDebugDirs() error {
 		return err
 	}
 
-	testfile := fmt.Sprintln("ubuntu.com\nwww.debian.org\nsystem76.com\n")
+	testfile := fmt.Sprintln("ubuntu.com\nwww.debian.org\nsystem76.com")
 
-	fileuri := fmt.Sprintf("%s%s", readdir, "urls.txt")
+	fileuri := fmt.Sprintf("%s%s", readdir, "urls")
 	err = os.WriteFile(fileuri, []byte(testfile), 0660)
 	if err != nil {
 		return err

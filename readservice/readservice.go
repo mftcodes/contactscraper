@@ -7,12 +7,7 @@ import (
 )
 
 func ReadAllFiles(diruri string) (filenames []string, err error) {
-	dir, err := os.Open(diruri)
-	if err != nil {
-		return filenames, err
-	}
-
-	files, err := dir.Readdir(-1)
+	files, err := os.ReadDir(diruri)
 	if err != nil {
 		return filenames, err
 	}

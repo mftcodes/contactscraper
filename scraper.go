@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"scraper/helpers"
 	"scraper/readservice"
@@ -18,10 +19,6 @@ func main() {
 	writedir := helpers.SetWriteDir()
 	var urls []string
 	var err error
-
-	// DEBUG PRINTING REMOVE
-	fmt.Printf("Read Dir: %s\n", readdir)
-	fmt.Printf("Write Dir: %s\n", writedir)
 
 	if *isdebug {
 		if err = helpers.SetupDebugDirs(); err != nil {
@@ -40,7 +37,7 @@ func main() {
 
 	for _, f := range files {
 		fileuri := fmt.Sprintf("%s%s", readdir, f)
-		urls, err = readservice.ReadUrlsFromFile(fileuri)
+		urls, err = readservice.ReadUrlsFromFile(strings.TrimSpace(fileuri))
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)
