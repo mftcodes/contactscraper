@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"fmt"
 	"os"
 )
 
@@ -16,6 +17,15 @@ func SetupDebugDirs() error {
 	if err != nil && !os.IsExist(err) {
 		return err
 	}
+
+	testfile := fmt.Sprintln("ubuntu.com\nwww.debian.org\nsystem76.com")
+
+	fileuri := fmt.Sprintf("%s%s", readdir, "urls")
+	err = os.WriteFile(fileuri, []byte(testfile), 0660)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
