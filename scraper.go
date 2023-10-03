@@ -8,7 +8,9 @@ import (
 	"strings"
 
 	"scraper/helpers"
+	"scraper/httpservice"
 	"scraper/readservice"
+	"scraper/writeservice"
 )
 
 func main() {
@@ -47,6 +49,17 @@ func main() {
 		fmt.Printf("File: %s\n", f)
 		for i, u := range urls {
 			fmt.Printf("    Url %d: %s\n", i, u)
+			body, err := httpservice.GetAction(u)
+			if err != nil {
+				log.Fatal(err)
+				os.Exit(1)
+			}
+			fileuri := fmt.Sprintf("%s%s", writedir, u)
+			if err = writeservice.BodyToFile(body, fileuri, *isdebug); err != nil {
+				log.Fatal(err)
+				os.Exit(1)
+			}
 		}
 	}
+
 }
