@@ -17,13 +17,11 @@ func GetAction(uri string) (body []byte, err error) {
 	var fulluri string
 
 	hasPrefix := strings.HasPrefix(uri, "https://")
-	fmt.Printf("Has it? %t\n", hasPrefix)
 	if hasPrefix {
 		fulluri = uri
 	} else {
 		fulluri = fmt.Sprintf("%s%s", "https://", uri)
 	}
-	fmt.Printf("uri: ~%s~\n", fulluri)
 
 	r, err := c.Get(fulluri)
 	if err != nil {

@@ -46,9 +46,7 @@ func main() {
 		}
 
 		// DEBUG PRINTING REMOVE
-		fmt.Printf("File: %s\n", f)
 		for i, u := range urls {
-			fmt.Printf("    Url %d: %s\n", i, u)
 			body, err := httpservice.GetAction(u)
 			if err != nil {
 				log.Fatal(err)
